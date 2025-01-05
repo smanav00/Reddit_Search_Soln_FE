@@ -13,7 +13,7 @@ const SearchForm = ({
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentPage(1);
+    setCurrentPage(1); //set the page no to 1 on every new search request
     fetchPosts(); // Fetch the first page
   };
 
@@ -40,8 +40,6 @@ const SearchForm = ({
         <option value="hot">Hot</option>
         <option value="new">New</option>
         <option value="top">Top</option>
-        {/* <option value="controversial">Controversial</option>
-        <option value="rising">Rising</option> */}
       </select>
       <button type="submit" disabled={loading}>
         {loading ? "Loading..." : "Search"}

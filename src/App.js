@@ -16,13 +16,14 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [errorMessage, setErrorMessage] = useState("");
 
+  //method to fetch posts through api call to server
   const fetchPosts = async (afterCursor = null, beforeCursor = null) => {
     setLoading(true);
     setErrorMessage("");
     try {
       const response = await axios.get(
-        // "http://localhost:5000/api/reddit/posts",
-        "https://reddit-search-soln-be.onrender.com/api/reddit/posts",
+        // "http://localhost:5000/api/reddit/posts",                      //api for local environment
+        "https://reddit-search-soln-be.onrender.com/api/reddit/posts", //api for backend hosted on render
         {
           params: {
             subreddit,
@@ -56,15 +57,19 @@ const App = () => {
         setKeyword={setKeyword}
         sort={sort}
         setSort={setSort}
-        fetchPosts={() => fetchPosts()}
+        fetchPosts={() => fetchPosts()} //performing initial fetch with null cursor values
         setCurrentPage={setCurrentPage}
         loading={loading}
       />
+
+      {/* conditional rendering of PostList component */}
       {errorMessage ? (
         <p className="error">{errorMessage}</p>
       ) : (
         <PostsList posts={posts} loading={loading} currentPage={currentPage} />
       )}
+
+      {/* pagination component rendering */}
       <PaginationControls
         currentPage={currentPage}
         handleNextPage={() => {
