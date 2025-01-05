@@ -35,7 +35,7 @@ const SearchForm = ({
       />
       <select value={sort} onChange={(e) => setSort(e.target.value)}>
         <option value="" disabled>
-          Sort by
+          Sort bygit
         </option>
         <option value="hot">Hot</option>
         <option value="new">New</option>
